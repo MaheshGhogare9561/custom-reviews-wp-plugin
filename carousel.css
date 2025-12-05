@@ -1,0 +1,363 @@
+/* --- Import Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Global Styles --- */
+:root {
+    --brand-google-blue: #4285F4;
+    --brand-google-red: #EA4335;
+    --brand-google-yellow: #FBBC05;
+    --brand-google-green: #34A853;
+    --text-primary: #202124;
+    --text-secondary: #5F6368;
+    --star-color: #FBC02D;
+    --bg-light: #F8F9FA;
+    --border-color: #E0E0E0;
+    --card-width: 320px; /* Width of one card */
+    --card-gap: 1.5rem;
+}
+
+/* --- Testimonial Section Wrapper --- */
+.testimonial-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1400px; /* <-- EDITED: Increased from 1300px */
+    width: 100%;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+}
+
+/* --- 1. Left Side: Rating Summary --- */
+.rating-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.rating-summary h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rating-summary .stars {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+.rating-summary .stars svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--star-color);
+}
+
+.rating-summary .review-count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+}
+
+.rating-summary .google-logo-large {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.rating-summary .google-logo-large .g-1 { color: var(--brand-google-blue); }
+.rating-summary .google-logo-large .g-2 { color: var(--brand-google-red); }
+.rating-summary .google-logo-large .g-3 { color: var(--brand-google-yellow); }
+.rating-summary .google-logo-large .g-4 { color: var(--brand-google-blue); }
+.rating-summary .google-logo-large .g-5 { color: var(--brand-google-green); }
+.rating-summary .google-logo-large .g-6 { color: var(--brand-google-red); }
+
+/* --- 2. Right Side: Reviews Carousel --- */
+.reviews-carousel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+    overflow: hidden; 
+    min-width: 0;
+    padding-bottom: 0; 
+}
+
+/* Carousel Arrows */
+.custom-carousel-arrow {
+    background-color: #fff !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06) !important;
+    flex-shrink: 0 !important;
+    color: var(--text-secondary) !important;
+    z-index: 10 !important;
+    position: relative !important;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease !important;
+}
+
+.custom-carousel-arrow:hover {
+    background-color: #f7f7f7 !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08) !important;
+    color: var(--text-secondary) !important; 
+}
+
+.custom-carousel-arrow svg {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+/* Card Container (The moving part) */
+.reviews-container {
+    display: flex;
+    gap: var(--card-gap);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    align-items: flex-start; 
+    padding: 1rem 1rem 1.5rem 1rem;
+}
+
+.reviews-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- 3. Individual Review Card --- */
+.review-card {
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    
+    /* DEFAULT: 3 cards for Desktop */
+    min-width: calc((100% - 2 * var(--card-gap)) / 3);
+    max-width: calc((100% - 2 * var(--card-gap)) / 3);
+    
+   
+    /* min-height: 380px;  */
+    
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* This is the "pop" effect */
+.review-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    z-index: 5; 
+}
+
+.review-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    
+    /* This fix is correct */
+    min-height: 48px; 
+}
+
+.review-card-header .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+    
+.review-card-header .profile-pic-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.review-card-header .user-info {
+    flex-grow: 1;
+}
+
+.review-card-header .user-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word; 
+}
+
+.review-card-header .review-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.review-card-header .google-logo-small {
+    width: 24px;
+    height: 24px;
+}
+
+.review-card-body {
+    /* --- THIS IS THE NEW FIX --- */
+    /* This ensures all card bodies start at the same height */
+    min-height: 140px;
+}
+
+.review-card-body .stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.review-card-body .stars svg {
+    width: 16px;
+    height: 16px;
+}
+    
+.review-card-body .star-icon {
+    fill: var(--star-color);
+}
+
+.review-card-body .check-icon {
+    fill: var(--brand-google-blue);
+    width: 16px;
+    height: 16px;
+    margin-left: 0.25rem;
+}
+
+.review-card-body .review-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    max-height: 4.5rem; /* ~3 lines */
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+}
+
+.review-card-body .review-text.expanded {
+    /* JS will set the exact height */
+}
+
+.review-card-body .review-text.short {
+    font-weight: 500;
+}
+
+.review-card-body .read-more {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    display: none;
+}
+.review-card-body .read-more.show {
+    display: inline-block;
+}
+.review-card-body .read-more:hover {
+    text-decoration: underline;
+}
+
+/* === RESPONSIVE STYLES === */
+
+/* TABLET VIEW: 2 Cards */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .testimonial-section {
+        gap: 1rem;
+    }
+    .reviews-container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .review-card {
+        min-width: calc((100% - 1 * var(--card-gap)) / 2);
+        max-width: calc((100% - 1 * var(--card-gap)) / 2);
+    }
+    .review-card-header {
+        min-height: 48px; /* Also apply min-height here */
+    }
+    .review-card-body {
+        min-height: 140px; /* Also apply min-height here */
+    }
+}
+
+
+/* MOBILE VIEW: 1 Card */
+@media (max-width: 768px) {
+    .testimonial-section {
+        flex-direction: column; /* Stack vertically */
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        width: 100%;
+        box-sizing: border-box; /* Include padding in width */
+    }
+
+    .rating-summary {
+        width: 100%; /* Allow to be full width */
+        align-items: center; /* Center everything */
+        padding: 0 1rem; /* Add some side padding */
+        box-sizing: border-box;
+    }
+
+    .custom-carousel-arrow {
+        display: none !important; /* Hide arrows on mobile */
+    }
+    
+    .reviews-carousel {
+        /* 1. Make the carousel "window" 90% wide and centered */
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .reviews-container {
+        /* 2. Remove padding and set gap */
+        padding: 0;
+        gap: 0;
+        
+        /* 3. Enable snapping */
+        scroll-snap-type: x mandatory;
+    }
+
+    .review-card {
+        /* 4. Make each card 100% of the .reviews-carousel (which is 90% wide) */
+        min-width: 100%;
+        width: 100%;
+        
+        /* 5. Snap each card to the start */
+        scroll-snap-align: start;
+        
+        /* 6. Add space BETWEEN cards (this will be invisible) */
+        margin-right: 1rem; 
+        
+        /* 7. Reset desktop hover effects */
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    }
+    
+    .review-card:last-child {
+        margin-right: 0; /* No margin on the very last card */
+    }
+    
+    .review-card-header {
+        min-height: unset; /* Don't force min-height on mobile */
+    }
+    .review-card-body {
+        min-height: unset; /* Don't force min-height on mobile */
+    }
+}
