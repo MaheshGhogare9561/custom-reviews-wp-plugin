@@ -2,10 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const carousels = document.querySelectorAll('.testimonial-section');
 
     carousels.forEach(carousel => {
-        // --- Scroll Logic (Unchanged) ---
+        // --- Scroll Logic ---
         const container = carousel.querySelector('.reviews-container');
-        
-        // === EDITED ===
         const scrollLeftBtn = carousel.querySelector('.custom-scroll-left');
         const scrollRightBtn = carousel.querySelector('.custom-scroll-right');
 
@@ -13,20 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollCarousel = (direction) => {
                 const card = container.querySelector('.review-card');
                 if (!card) return;
+                
+                // Get dynamic measurements
                 const cardStyle = window.getComputedStyle(card);
                 const containerStyle = window.getComputedStyle(container);
                 const cardWidth = parseInt(cardStyle.width, 10);
                 const cardGap = parseInt(containerStyle.gap, 10) || 16;
+                
+                // Calculate scroll amount (Card width + Gap)
                 const scrollAmount = (cardWidth + cardGap) * direction;
+                
                 container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             };
+            
             scrollRightBtn.addEventListener('click', () => scrollCarousel(1));
             scrollLeftBtn.addEventListener('click', () => scrollCarousel(-1));
         }
 
-        // --- NEWER, SIMPLER "Read More" Logic ---
-
-        // This function runs on load/resize to check if a "Read more" button is needed
+        // --- Read More Logic ---
         const initializeReadMore = () => {
             const cards = carousel.querySelectorAll('.review-card-body');
             cards.forEach(card => {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const collapsedHeight = parseInt(computedStyle.maxHeight, 10);
 
                 // Check if the *actual* text height is taller than the *collapsed* height
-                if (text.scrollHeight > collapsedHeight + 2) { 
+                if (text.scrollHeight > collapsedHeight + 2) { // +2 buffer for rounding
                     readMore.classList.add('show');
                     readMore.textContent = 'Read more';
                 } else {
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // This function handles the click event
+        // This function handles the click event for Read More
         carousel.querySelectorAll('.review-card-body .read-more').forEach(link => {
             link.addEventListener('click', (e) => {
                 const text = e.currentTarget.previousElementSibling; 

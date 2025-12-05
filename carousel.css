@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    max-width: 1400px; /* <-- EDITED: Increased from 1300px */
+    max-width: 1400px;
     width: 100%;
     padding: 2rem 1rem;
     margin: 0 auto;
@@ -141,12 +141,9 @@
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     
-    /* DEFAULT: 3 cards for Desktop */
-    min-width: calc((100% - 2 * var(--card-gap)) / 3);
+    /* Minimum Width Fix */
+    min-width: 300px; 
     max-width: calc((100% - 2 * var(--card-gap)) / 3);
-    
-   
-    /* min-height: 380px;  */
     
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     box-sizing: border-box;
@@ -167,8 +164,6 @@
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.75rem;
-    
-    /* This fix is correct */
     min-height: 48px; 
 }
 
@@ -213,8 +208,6 @@
 }
 
 .review-card-body {
-    /* --- THIS IS THE NEW FIX --- */
-    /* This ensures all card bodies start at the same height */
     min-height: 140px;
 }
 
@@ -286,14 +279,14 @@
         padding-right: 0.5rem;
     }
     .review-card {
-        min-width: calc((100% - 1 * var(--card-gap)) / 2);
+        min-width: 300px;
         max-width: calc((100% - 1 * var(--card-gap)) / 2);
     }
     .review-card-header {
-        min-height: 48px; /* Also apply min-height here */
+        min-height: 48px; 
     }
     .review-card-body {
-        min-height: 140px; /* Also apply min-height here */
+        min-height: 140px; 
     }
 }
 
@@ -301,63 +294,52 @@
 /* MOBILE VIEW: 1 Card */
 @media (max-width: 768px) {
     .testimonial-section {
-        flex-direction: column; /* Stack vertically */
+        flex-direction: column; 
         gap: 1.5rem;
         padding: 1.5rem 0;
         width: 100%;
-        box-sizing: border-box; /* Include padding in width */
+        box-sizing: border-box; 
     }
 
     .rating-summary {
-        width: 100%; /* Allow to be full width */
-        align-items: center; /* Center everything */
-        padding: 0 1rem; /* Add some side padding */
+        width: 100%; 
+        align-items: center; 
+        padding: 0 1rem; 
         box-sizing: border-box;
     }
 
     .custom-carousel-arrow {
-        display: none !important; /* Hide arrows on mobile */
+        display: none !important; 
     }
     
     .reviews-carousel {
-        /* 1. Make the carousel "window" 90% wide and centered */
         width: 90%;
         margin: 0 auto;
     }
 
     .reviews-container {
-        /* 2. Remove padding and set gap */
         padding: 0;
         gap: 0;
-        
-        /* 3. Enable snapping */
         scroll-snap-type: x mandatory;
     }
 
     .review-card {
-        /* 4. Make each card 100% of the .reviews-carousel (which is 90% wide) */
         min-width: 100%;
         width: 100%;
-        
-        /* 5. Snap each card to the start */
         scroll-snap-align: start;
-        
-        /* 6. Add space BETWEEN cards (this will be invisible) */
         margin-right: 1rem; 
-        
-        /* 7. Reset desktop hover effects */
         transform: none !important;
         box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
     }
     
     .review-card:last-child {
-        margin-right: 0; /* No margin on the very last card */
+        margin-right: 0; 
     }
     
     .review-card-header {
-        min-height: unset; /* Don't force min-height on mobile */
+        min-height: unset; 
     }
     .review-card-body {
-        min-height: unset; /* Don't force min-height on mobile */
+        min-height: unset; 
     }
 }
