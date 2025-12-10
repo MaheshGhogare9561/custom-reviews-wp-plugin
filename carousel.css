@@ -142,8 +142,8 @@
     padding: 1.5rem;
     
     /* Minimum Width Fix */
-    min-width: 300px; 
-    max-width: calc((100% - 2 * var(--card-gap)) / 3);
+    /* min-width: 300px;  */
+    min-width: calc((100% - 2 * var(--card-gap)) / 3);
     
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     box-sizing: border-box;
